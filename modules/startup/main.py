@@ -3,6 +3,7 @@ import datetime
 import shutil
 import json
 import winreg
+import subprocess
 from ctypes import windll, c_int, c_wchar_p
 from distutils.dir_util import copy_tree
 
@@ -47,5 +48,14 @@ def createVirtualDrives():
             if(os.path.exists(drive_path)):
                 createVirtualDrive(drive_letter, drive_path)
 
+def launchPrograms():
+    path = os.path.abspath(os.path.join((os.path.dirname(__file__)) + "..\\..\\..\\config\\startup_apps.json"))
+    with open(path) as json_data:
+        data = json.load(json_data)
+        for key, value in data.items():
+            for v in value:
+                os.system(v)
+
 
 createVirtualDrives()
+launchPrograms()
