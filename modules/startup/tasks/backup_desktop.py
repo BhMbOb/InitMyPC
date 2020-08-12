@@ -38,9 +38,11 @@ backup_dir = getUserBackupDir()
 
 # Copy all desktop files to the temp folder
 desktop_dir = os.path.expanduser("~/Desktop")
-desktop_files = os.listdir(desktop_dir)
 
-if not((len(desktop_files) == 1) and ("desktop.ini" == desktop_files[0])):
-    if(len(desktop_files) > 0):
-        copy_tree(desktop_dir, backup_dir + "\\" + date_string + "\\" + "Desktop")
-        emptyDir(desktop_dir)
+if(os.path.exists(desktop_dir)):
+    desktop_files = os.listdir(desktop_dir)
+    
+    if not((len(desktop_files) == 1) and ("desktop.ini" == desktop_files[0])):
+        if(len(desktop_files) > 0):
+            copy_tree(desktop_dir, backup_dir + "\\" + date_string + "\\" + "Desktop")
+            emptyDir(desktop_dir)
