@@ -1,3 +1,3 @@
 cd
-py impc_startup.py
+python impc_startup.py
 exit
